@@ -2,14 +2,28 @@
 
 Excel2PDFCatalog is a Python tool that reads product/catalog data from an Excel file and generates one PDF catalog. It provides a minimal UI to select the Excel file and image folders and a PDF builder that composes pages from rows and linked images.
 
-## ✨ Key Features
+## Purpose
+Provide a fast, editable pipeline to generate printable/catalog PDFs from spreadsheet data and image folders. Intended for internal use and easy adaptation to different Excel layouts and output requirements.
 
-- Excel parsing powered by ***pandas*** and ***openpyxl***.
-- Configurable column-to-field mapping to adapt to different Excel formats.
-- Customizable PDF generation using reportlab.
-- Per-product image support: each row can link to dedicated image folders.
-- Minimal UI for selecting inputs/outputs and starting the process.
-- Settings stored in JSON configuration files.
+## ✨ Key Features
+- Excel import: reads Excel files via ***pandas/openpyxl*** with support for common Excel formats and multiple sheets.
+- Column-to-field mapping: configurable mapping between Excel columns and product fields (title, description, price, image references).
+- UI-driven workflow:
+  - File pickers for Excel file, one or more image folders, and output folder.
+  - Controls to load/save runtime configuration (***app/config.json***).
+  - Simple "Go" button to start PDF generation and a console/log area showing progress and errors.
+- PDF generation:
+  - Uses reportlab to layout pages and render text and images.
+  - Supports multiple images per product (searches configured image folders).
+  - Image resizing and placement logic to fit images into product frames.
+  - Customizable fonts (fonts/ folder) and basic styling via configuration.
+- Config files:
+  - ***app/config.json*** — runtime defaults (paths, page settings, logging).
+  - ***Excel2PDFCatalog.config*** — project-specific mapping and rules for interpreting Excel rows.
+- Error handling & logging: console output and log messages for missing images, parsing errors, and generation steps.
+- Examples & assets:
+  - ***example_excel/*** and ***example_catalog/*** provide sample inputs and outputs to validate layout and mapping.
+- Portable & editable: code organized to allow quick changes to layout logic, mapping rules, or PDF styling.
 
 ## 🛠️ Requirements
 
@@ -38,9 +52,9 @@ python Excel2PDFCatalog.py
 
 ## ⚙️ Configuration
 
-``app/config.json`` → runtime defaults and options.
+``app/config.json`` → to set default folders, page size, and other runtime options.
 
-``Excel2PDFCatalog.config`` → column mapping and project-specific rules.
+``Excel2PDFCatalog.config`` → to change column mappings and product-level rules.
 
 Edit these files to match your Excel layout, image folder structure, and output preferences.
 
@@ -63,10 +77,10 @@ Excel2PDFCatalog/
 
 ## ▶️ Usage
 
-1. Start the application.
-2. Select the Excel file and image folder(s) via the UI.
-3. Set the output folder and other options if needed.
-4. Click Go → the PDF catalog is generated in the configured folder.
+1. Start the app.
+2. Select an Excel file, the image folder(s) containing product images, and the output folder.
+3. Verify or edit the column mapping if your Excel uses different headers.
+4. Click "Go" to generate the PDF(s). Monitor the log/console for progress and warnings.
 
 ## 📄 Preview
 
@@ -84,16 +98,15 @@ An Excel file with columns Name, Price, Image can produce a PDF catalog with:
 
 ## 🛠️ Troubleshooting
 
-- Ensure image references in Excel match filenames in the provided folders.
-- If library errors occur, reinstall dependencies inside the active virtual environment.
-- Check the VS Code terminal/output for detailed error messages.
+- Verify that image filenames referenced in Excel match actual files in the provided image folders.
+- If an image is missing, the generator logs a warning and continues (placeholder behavior depends on config).
+- Reinstall dependencies inside the active virtualenv if import errors occur.
+- Check the VS Code terminal/output for full error traces when debugging.
 
 ## 🤝 Contributing
 
 Report bugs or suggest improvements by opening an Issue.
-
 Submit Pull Requests for new features or optimizations.
-
 Improve documentation and examples to help other users.
 
 ## 📌 Notes

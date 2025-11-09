@@ -67,17 +67,6 @@ def build_UI_and_GO():
      def update_footer(*args):
           config_utils.footer = entry_var_footer.get()
           logger.info(f"footer changed: {config_utils.footer}")
-     
-   
-     # def choose_color(var_name, label, cvs):
-     #      # Apri il color chooser
-     #      colore = colorchooser.askcolor(title="Seleziona un colore: ")
-     #      if colore[1]:  # colore[0] = (R,G,B), colore[1] = "#rrggbb"
-     #           # Aggiorna il riquadro con il colore scelto
-     #           colors_var_array[var_name] = colore[1]
-     #           cvs.config(bg = colore[1])
-     #           # Aggiorna la label con i valori
-     #           label.config(text = f"HEX: {colore[1]}")
 
      def choose_color(col, entry, lbl):
           # Apri il color chooser
@@ -102,43 +91,41 @@ def build_UI_and_GO():
                pass
 
      # imposto la finestra
-     WINDOWS_WIDTH = 800
-     WINDOWS_HEIGHT = 720
      FRAME_PADDING = 5
-     WINDOWS_USABLE_WIDTH = (WINDOWS_WIDTH//2) - (FRAME_PADDING*2)
+     WINDOWS_USABLE_WIDTH = 300
      root = tk.Tk()
      root.title(f"Excel2PDFCatalog - v{config_utils.__version__}")
-     root.geometry(f"{WINDOWS_WIDTH}x{WINDOWS_HEIGHT}")
-     root.resizable(False, False)
 
      # ----------------------------------------------------------------------
      # ----------------------------------------------------------------------
 
      # Frame principale con layout orizzontale
-     main_frame = tk.Frame(root, borderwidth=0, relief="solid")
-     main_frame.pack(fill=tk.BOTH, expand=False, anchor="nw")
+     # main_frame = tk.Frame(root, borderwidth=1, relief="solid")
+     # main_frame.pack(fill=tk.BOTH, expand=True, anchor="nw")
 
      # Contenitore di sinistra
-     frame_left = tk.Frame(main_frame, padx=0, pady=0, width=WINDOWS_WIDTH//2, height=WINDOWS_HEIGHT, borderwidth=0, relief="solid")
-     frame_left.pack(side="left", fill="x", anchor="nw")
-     frame_left.grid_propagate(False) # Impedisce il ridimensionamento automatico
+     frame_left = tk.Frame(root, padx=FRAME_PADDING, pady=FRAME_PADDING, relief="solid")
+     # frame_left.config(bg="red", borderwidth=2)
+     frame_left.pack(side="left", anchor="nw", fill="both")
 
      # Separatore verticale
-     separator = ttk.Separator(main_frame, orient=tk.VERTICAL)
-     separator.pack(side="left", fill="y", padx=0)
+     separator = ttk.Separator(root, orient=tk.VERTICAL)
+     separator.pack(side="left", anchor="nw", fill="y", pady=FRAME_PADDING, padx=0)
 
      # Contenitore di destra
-     frame_right = tk.Frame(main_frame, padx=FRAME_PADDING, pady=FRAME_PADDING, width=WINDOWS_WIDTH//2, height=WINDOWS_HEIGHT, borderwidth=0, relief="solid")
-     frame_right.pack(side="left", fill="x", anchor="nw")
-     frame_right.grid_propagate(False) # Impedisce il ridimensionamento automatico
+     frame_right = tk.Frame(root, padx=FRAME_PADDING, pady=FRAME_PADDING, relief="solid")
+     # frame_right.config(bg="yellow", borderwidth=2)
+     frame_right.pack(side="left", fill="both", anchor="nw")
 
      # a sinistra, contenitore etichette e opzioni
-     frame_options = tk.Frame(frame_left, padx=FRAME_PADDING, pady=FRAME_PADDING, borderwidth=0, relief="solid")
+     frame_options = tk.Frame(frame_left, padx=0, pady=0, relief="solid")
+     # frame_left.config(bg="cyan", borderwidth=2)
      frame_options.pack(fill="x", anchor="nw")
 
      # a sinistra, contenitore colori
-     frame_colors = tk.Frame(frame_left, padx=FRAME_PADDING, pady=FRAME_PADDING, borderwidth=0, relief="solid")
-     frame_colors.pack(fill="x", anchor="nw")
+     frame_colors = tk.Frame(frame_left, padx=FRAME_PADDING, pady=FRAME_PADDING, relief="solid")
+     # frame_colors.config(bg="green", borderwidth=2)
+     frame_colors.pack(fill="x", anchor="center")
 
      # ----------------------------------------------------------------------
      # -------------- frame sn opzioni --------------------------------------
@@ -263,6 +250,12 @@ def build_UI_and_GO():
      tk.Button(frame_right, width=15, height=3, text="Save config", command=save_config).grid(row=grid_row, column=0, pady=FRAME_PADDING, padx=FRAME_PADDING)
      tk.Button(frame_right, width=20, height=3, text="Save and build PDF", bg="green", fg="white", command=start_build_pdf).grid(row=grid_row, column=1, pady=FRAME_PADDING, padx=FRAME_PADDING)
      # ----------------------------------------------------------------------
+     # ----------------------------------------------------------------------
+     
+     root.update_idletasks()   # forza il calcolo delle dimensioni in base ai widget
+     root.minsize(root.winfo_width(), root.winfo_height())
+     root.geometry(f"{root.winfo_width()}x{root.winfo_height()}")
+     root.resizable(False, False)
 
      root.mainloop()
 
