@@ -290,7 +290,11 @@ def build_UI_and_GO():
      "1. The catalogue is created following the order of the products in the Excel file.\n"
      "2. We recommend sorting the products in the Excel file at least by the 'category' and 'producer' columns.\n"
      "3. Excel cells with no content are not allowed: in this case, the PDF will not be produced.\n"
-     "4. The field containing the price must be numeric.")
+     "4. The field containing the price must be numeric.\n"
+     "5. Close the Excel sheet before generating the PDF.\n"
+     "6. All images must be in .png format.\n"
+     "7. The product images are in the folder “img_products” and must be square.\n"
+     "8. Other images are in the folder “img_general”.")
      tk.Label(frame_right, text=long_texts, justify=tk.LEFT, wraplength=WINDOWS_USABLE_WIDTH).grid(row=grid_row, column=0, columnspan=2, sticky="w", pady=FRAME_PADDING)
      grid_row= grid_row + 1
      # Separator orizzontale

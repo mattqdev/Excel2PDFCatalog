@@ -2,8 +2,6 @@ tmp/*
 app.log*
 /*.xlsx
 /*.pdf
-img_general/*
-img_products/*
 .DS_Store
 .vscode/
 .venv/
