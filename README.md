@@ -45,7 +45,8 @@ Project structure (summary)
 - app/ui_interface.py — UI logic for file selection and starting the process
 - app/build_PDF.py — PDF generation (build_pdf function)
 - app/requirements.txt — dependency list
-- .vscode/launch.json — VS Code debug configuration
+- img_products/ - folder with products images
+- img_general/ - folder with other images
 
 Usage
 -----
