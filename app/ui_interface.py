@@ -7,6 +7,7 @@ import app.config_utils as config_utils
 import app.build_PDF as build_PDF
 
 def build_UI_and_GO():
+     logger.info("Build UI...")
 
      def browse_file():
           selected_file = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")], title="Select the XLSX file:")
@@ -186,7 +187,7 @@ def build_UI_and_GO():
           cvs_color.grid(row=grid_row, column=0, pady=0, padx=FRAME_PADDING, sticky="w")
           entry_var_color = tk.StringVar()
           entry_var_color.set(config_utils.colors_dictionary[k])
-          entry_color = tk.Entry(frame_colors, textvariable=entry_var_color, width=10, bg="white")
+          entry_color = tk.Entry(frame_colors, textvariable=entry_var_color, width=10, bg="white", foreground="black")
           # In Tkinter, se scrivessi:
           # command=choose_color(col, lbl, cvs) oppure choose_color(c, e, v)
           # ogni funzione verrebbe eseguita subito al momento della creazione del bottone, invece di aspettare il click.
@@ -250,7 +251,7 @@ def build_UI_and_GO():
      # Pulsante ESEGUI
      grid_row= grid_row + 1
      tk.Button(frame_right, width=15, height=3, text="Save config", command=save_config).grid(row=grid_row, column=0, pady=FRAME_PADDING, padx=FRAME_PADDING)
-     tk.Button(frame_right, width=20, height=3, text="Save and build PDF", bg="green", fg="white", command=start_build_pdf).grid(row=grid_row, column=1, pady=FRAME_PADDING, padx=FRAME_PADDING)
+     tk.Button(frame_right, width=40, height=3, text="Save and build PDF", command=start_build_pdf).grid(row=grid_row, column=1, pady=FRAME_PADDING, padx=FRAME_PADDING)
      # ----------------------------------------------------------------------
      # ----------------------------------------------------------------------
      

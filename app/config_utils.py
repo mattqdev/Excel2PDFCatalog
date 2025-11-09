@@ -15,7 +15,6 @@ __version__ = "0.3"
 # valori di default che poi vengono sovrascritti
 # dal file di configurazione JSON
 excel_file = ""
-# output_folder = os.getcwd()
 break_page_company = True
 generate_random_images = False
 title = "CHANGE THE TITLE"
@@ -82,26 +81,23 @@ def load_config():
         with open(CONFIG_FILE, 'r') as f:
             try:
                 config = json.load(f)
-                logger.info("JSON Config file readed")
                 #
                 excel_file = config["excel_file"]
-                output_folder = config["output_folder"]
                 break_page_company = config["break_page_company"]
                 generate_random_images = config["generate_random_images"]
                 title = config["title"]
                 subtitle = config["subtitle"]
                 footer = config["footer"]
-                logger.info("JSON Config file: parameters loaded")
                 #
                 # colori
                 for k, v in colors_dictionary.items():
                     colors_dictionary[k] = config[k]
-                    logger.info(f"{v}->{k}")
+                    logger.info(f"{v} -> {k}")
 
                 # paths
                 for k, v in path_dictionary.items():
                     path_dictionary[k] = Path(config[k])
-                    logger.info(f"{str(v)}->{k}")
+                    logger.info(f"{str(v)} -> {k}")
             except:
                 logger.error("JSON Config file error", exc_info=True)
                 config = {}
@@ -118,7 +114,6 @@ def save_config():
         config = {}
         # parametri
         config["excel_file"] = excel_file
-        config["output_folder"] = output_folder
         config["break_page_company"] = break_page_company
         config["generate_random_images"] = generate_random_images
         config["title"] = title 
@@ -127,15 +122,14 @@ def save_config():
         # colori
         for k, v in colors_dictionary.items():
             config[f"{k}"] = v
-            logger.info(f"{k}->{v}")
+            logger.info(f"{k} -> {v}")
         #paths
         for k, v in path_dictionary.items():
             config[f"{k}"] = str(v)
-            logger.info(f"{k}->{str(v)}")
+            logger.info(f"{k} -> {str(v)}")
 
         with open(CONFIG_FILE, 'w') as f:
             json.dump(config, f, indent=4)
-        logger.info("JSON Config file saved")
     except:
         logger.error("JSON Config file save error", exc_info=True)
         sys.exit()

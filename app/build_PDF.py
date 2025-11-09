@@ -35,9 +35,6 @@ XLS_SIZE = config.get("Excel","XLS_COLUMN_SIZE")
 XLS_PRICE = config.get("Excel","XLS_COLUMN_PRICE")
 XLS_COLUMN_DESCRIPTION = config.get("Excel","XLS_COLUMN_DESCRIPTION")
 XLS_COLUMN_IMG = config.get("Excel","XLS_COLUMN_IMG")
-# immagini
-# PRODUCTS_IMAGES_SUBFOLDER = config.get("Resources","PRODUCTS_IMAGES_SUBFOLDER")
-# OTHER_IMAGES_SUBFOLDER = config.get("Resources","OTHER_IMAGES_SUBFOLDER")
 #---------------------------------------------------
 # dimensioni foglio 
 PAGE_WIDTH, PAGE_HEIGHT  = A4
