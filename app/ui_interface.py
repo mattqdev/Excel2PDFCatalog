@@ -7,6 +7,7 @@ import app.config_utils as config_utils
 import app.build_PDF as build_PDF
 
 def build_UI_and_GO():
+     logger.info("Build UI...")
 
      def browse_file():
           selected_file = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")], title="Select the XLSX file:")
@@ -186,7 +187,7 @@ def build_UI_and_GO():
           cvs_color.grid(row=grid_row, column=0, pady=0, padx=FRAME_PADDING, sticky="w")
           entry_var_color = tk.StringVar()
           entry_var_color.set(config_utils.colors_dictionary[k])
-          entry_color = tk.Entry(frame_colors, textvariable=entry_var_color, width=10, bg="white")
+          entry_color = tk.Entry(frame_colors, textvariable=entry_var_color, width=10, bg="white", foreground="black")
           # In Tkinter, se scrivessi:
           # command=choose_color(col, lbl, cvs) oppure choose_color(c, e, v)
           # ogni funzione verrebbe eseguita subito al momento della creazione del bottone, invece di aspettare il click.
@@ -238,9 +239,8 @@ def build_UI_and_GO():
      "3. Excel cells with no content are not allowed: in this case, the PDF will not be produced.\n"
      "4. The field containing the price must be numeric.\n"
      "5. Close the Excel sheet before generating the PDF.\n"
-     "6. All images must be in .png format.\n"
-     "7. The product images are in the folder “img_products” and must be square.\n"
-     "8. Other images are in the folder “img_general”.")
+     "6. All products images must be in <excel col image>.png 1:1 format (square).\n"
+     "7. The logo is a logo.png with 1:1 format (square).")
      tk.Label(frame_right, text=long_texts, justify=tk.LEFT, wraplength=480, borderwidth=0, relief="solid").grid(row=grid_row, column=0, columnspan=2, sticky="w", pady=FRAME_PADDING)
      grid_row= grid_row + 1
      # Separator orizzontale
@@ -250,7 +250,7 @@ def build_UI_and_GO():
      # Pulsante ESEGUI
      grid_row= grid_row + 1
      tk.Button(frame_right, width=15, height=3, text="Save config", command=save_config).grid(row=grid_row, column=0, pady=FRAME_PADDING, padx=FRAME_PADDING)
-     tk.Button(frame_right, width=20, height=3, text="Save and build PDF", bg="green", fg="white", command=start_build_pdf).grid(row=grid_row, column=1, pady=FRAME_PADDING, padx=FRAME_PADDING)
+     tk.Button(frame_right, width=40, height=3, text="Save and build PDF", command=start_build_pdf).grid(row=grid_row, column=1, pady=FRAME_PADDING, padx=FRAME_PADDING)
      # ----------------------------------------------------------------------
      # ----------------------------------------------------------------------
      
