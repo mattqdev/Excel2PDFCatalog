@@ -1,10 +1,48 @@
-tmp/*
+# -------------------------
+# OS / Editor junk files
+# -------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# -------------------------
+# Python build / cache
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# -------------------------
+# Virtual environments
+# -------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# -------------------------
+# Logs & temp files
+# -------------------------
 app.log*
+logs/
+tmp/
+*.tmp
+
+# -------------------------
+# Project-specific ignores
+# -------------------------
 /*.xlsx
 /*.pdf
-.DS_Store
-.vscode/
-.venv/
-__pycache__/
 _PAOLO/
+
+# -------------------------
+# Git
+# -------------------------
 .gitignore
